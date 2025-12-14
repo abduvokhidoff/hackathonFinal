@@ -4,7 +4,8 @@ const Employee = require('../models/Employee')
 exports.getEmployeesWithFinalSalary = async (req, res) => {
 	const employees = await Employee.find({ role: 'EMPLOYEE' })
 	const result = employees.map(emp => {
-		const finalSalary = emp.basicSalary - emp.avance + emp.bonus - emp.penalty
+		const finalSalary = emp.basicSalary + emp.bonus - emp.penalty - emp.avance
+
 		return {
 			_id: emp._id,
 			name: emp.name,

@@ -1,22 +1,19 @@
 const mongoose = require('mongoose')
 
-const taskSchema = new mongoose.Schema(
-	{
-		attachedEmployeeId: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Employee',
-			required: true,
-		},
-		taskName: { type: String, required: true },
-		description: String,
-		photoOrVideo: String,
-		file: String,
-		completed: { type: Boolean, default: false },
-		penalty: { type: Number, default: 0 },
-		salary: { type: Number, default: 0 },
-		bonus: { type: Number, default: 0 },
+const taskSchema = new mongoose.Schema({
+	attachedEmployeeId: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'employee',
+		required: true,
 	},
-	{ timestamps: true }
-)
+	taskName: { type: String, required: true },
+	description: { type: String },
+	file: { type: String }, // uploaded file
+	completed: { type: Boolean, default: false },
+	bonus: { type: Number, default: 0 },
+	penalty: { type: Number, default: 0 },
+	deadline: { type: Date, required: true }, // new field
+	createdAt: { type: Date, default: Date.now },
+})
 
 module.exports = mongoose.model('Task', taskSchema)
