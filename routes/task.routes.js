@@ -9,11 +9,11 @@ router.post('/', role('super_admin'), controller.createTask)
 router.get('/my', role('employee'), controller.getEmployeeTasks)
 router.post(
 	'/:id/submit',
-	role('EMPLOYEE'),
+	role('employee'),
 	upload.single('file'),
 	controller.submitTask
 )
 router.patch('/:id/review', role('super_admin'), controller.reviewTask)
 router.delete('/:id', role('super_admin'), controller.deleteTask)
-_
+
 module.exports = router
